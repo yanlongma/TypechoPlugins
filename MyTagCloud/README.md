@@ -13,7 +13,7 @@
 
 
 ## 效果展示
-    ![MyTagCloud02.gif](MyTagCloud02.gif)
+    ![MyTagCloud02.gif](https://github.com/YanlongMa/TypechoPlugins/tree/master/MyTagCloud/MyTagCloud02.gif)
 
 
 ## 使用帮助
