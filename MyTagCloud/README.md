@@ -13,7 +13,7 @@
 
 
 ## 效果展示
-    ![MyTagCloud02.gif](https://github.com/YanlongMa/TypechoPlugins/tree/master/MyTagCloud/MyTagCloud02.gif)
+    ![image](https://github.com/YanlongMa/TypechoPlugins/tree/master/MyTagCloud/MyTagCloud02.gif)
 
 
 ## 使用帮助
@@ -26,5 +26,5 @@
 
 ## 详细使用说明和效果演示地址:
 - 马燕龙个人博客:[http://www.mayanlong.com](http://www.mayanlong.com/archives/2016/53.html)
-- GitHub主页:[https://github.com/YanlongMa](https://github.com/YanlongMa/TypechoPlugins)
+- GitHub主页:[https://github.com/yanlongma](https://github.com/YanlongMa/TypechoPlugins)
 
