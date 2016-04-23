@@ -13,7 +13,7 @@
 
 
 ## 效果展示
-    ![MyTagCloud02.gif](http://www.mayanlong.com/usr/uploads/2016/04/2209087164.gif)
+    ![MyTagCloud02.gif](MyTagCloud02.gif)
 
 
 ## 使用帮助
