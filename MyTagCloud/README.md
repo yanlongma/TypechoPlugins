@@ -12,6 +12,10 @@
     - 可以后台设置前台标签最多显示数量
 
 
+## 效果展示
+    ![MyTagCloud02.gif](http://www.mayanlong.com/usr/uploads/2016/04/2209087164.gif)
+
+
 ## 使用帮助
 1. 下载插件
 2. 将插件上传到/usr/plugins/目录
@@ -21,6 +25,6 @@
 
 
 ## 详细使用说明和效果演示地址:
-- 马燕龙个人博客:[http://www.mayanlong.com](http://www.mayanlong.com)
-- GitHub主页:[https://github.com/YanlongMa](https://github.com/YanlongMa)
+- 马燕龙个人博客:[http://www.mayanlong.com](http://www.mayanlong.com/archives/2016/53.html)
+- GitHub主页:[https://github.com/YanlongMa](https://github.com/YanlongMa/TypechoPlugins)
 

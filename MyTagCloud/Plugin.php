@@ -8,7 +8,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
  * @version 1.0.0
  * @link http://www.mayanlong.com
  */
-class MyTagCloud_Plugin extends Widget_Abstract_Metas implements Typecho_Plugin_Interface
+class MyTagCloud_Plugin implements Typecho_Plugin_Interface
 {
 
     // 是否启用
@@ -130,7 +130,7 @@ class MyTagCloud_Plugin extends Widget_Abstract_Metas implements Typecho_Plugin_
                     <div class="widget-list">';
 
                         while ($tags->next()) {
-                            $html .= "<a href='{$tags->permalink}'>{$tags->name}</a>&nbsp;&nbsp;";
+                            $html .= "<a href='{$tags->permalink}' style='display: inline-block; margin: 0 5px 5px 0;'>{$tags->name}</a>";
                         }
 
         $html .=    '</div>
