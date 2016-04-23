@@ -4,4 +4,4 @@
 > 个人博客：[http://www.mayanlong.com](http://www.mayanlong.com)<br>
 
 ## 插件列表
-- MyTagCloud插件 - Typecho标签云插件，后台控制前台标签智能显示。
+- MyTagCloud - Typecho标签云插件，后台控制前台标签智能显示。

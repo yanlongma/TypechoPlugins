@@ -7,7 +7,7 @@
 - 功能描述：Typecho标签云插件，后台控制前台标签智能显示。
 - 开发作者：[马燕龙](http://www.mayanlong.com)
 
-#### 功能具体描述：
+##### 功能具体描述：
 - 可以后台设置前台是否显示标签栏目
 - 可以后台设置是否显示没使用的标签
 - 可以后台设置前台显示标签栏目标题
@@ -22,7 +22,7 @@
 5. 如果标签云模板结构不同，重写插件中render()方法即可
 
 
-## 详细使用说明和效果演示见blog发布地址:
+## 详细使用说明和效果演示地址:
 - 马燕龙个人博客:[http://www.mayanlong.com](http://www.mayanlong.com)
 - GitHub主页:[https://github.com/YanlongMa](https://github.com/YanlongMa)
 
