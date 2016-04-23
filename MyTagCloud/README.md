@@ -12,10 +12,6 @@
     - 可以后台设置前台标签最多显示数量
 
 
-## 效果展示
-    ![image](https://github.com/YanlongMa/TypechoPlugins/tree/master/MyTagCloud/MyTagCloud02.gif)
-
-
 ## 使用帮助
 1. 下载插件
 2. 将插件上传到/usr/plugins/目录
