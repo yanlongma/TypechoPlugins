@@ -21,6 +21,6 @@
 
 
 ## 详细使用说明和效果演示地址:
-- 马燕龙个人博客:[http://www.mayanlong.com](http://www.mayanlong.com/archives/2016/53.html)
-- GitHub主页:[https://github.com/yanlongma](https://github.com/YanlongMa/TypechoPlugins)
+- 马燕龙个人博客：[http://www.mayanlong.com](http://www.mayanlong.com/archives/2016/53.html)
+- GitHub主页：[https://github.com/yanlongma](https://github.com/YanlongMa/TypechoPlugins)
 
