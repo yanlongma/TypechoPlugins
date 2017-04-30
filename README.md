@@ -6,8 +6,8 @@
 
 
 ## 插件列表
-- MyTagCloud - Typecho标签云插件，后台控制前台标签智能显示。[使用文档](http://www.mayanlong.com/archives/2016/53.html)
+- MyTagCloud - Typecho标签云插件，后台控制前台标签智能显示。（[使用文档](http://www.mayanlong.com/archives/2016/53.html)）
 
 
 ## 脚本
-- DuoShuo - 多说评论一次导回 Typecho 本地数据库。[使用文档](http://www.mayanlong.com/archives/2017/duoshuo-to-typecho.html)
+- DuoShuo - 多说评论一次导回 Typecho 本地数据库。（[使用文档](http://www.mayanlong.com/archives/2017/duoshuo-to-typecho.html)）
