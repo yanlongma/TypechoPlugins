@@ -1,9 +1,5 @@
 package main
 
-// 参考
-// http://blog.csdn.net/u010499721/article/details/42526689
-// https://www.oschina.net/code/snippet_197499_22659
-
 import (
 	"encoding/json"
 	"fmt"
@@ -39,15 +35,6 @@ type Response struct {
 	Threads   []Threads //`json:"threads"`
 	Posts     []Posts
 }
-
-// 多说的文章ID(thread_id)与 typecho 的文章ID(cid) 对应关系
-// var threadIdRelationCid map[int]string
-
-// 多说的评论ID(post_id) 与 typecho 的评论ID(coid) 对应关系
-// var postIdRelationCoid map[int]int
-
-// 假设评论表 coid 小于10001，此处从1001开始自增，请根据实际最大值修改
-// var coid = 1001
 
 func main() {
 
@@ -100,15 +87,12 @@ func readFile(filename string) (resp Response, err error) {
 
 	bytes, err := ioutil.ReadFile(filename)
 	if err != nil {
-		//fmt.Println(filename, err.Error())
 		return
 	}
-	//fmt.Println(bytes)
 
 	if err := json.Unmarshal(bytes, &resp); err != nil {
 		fmt.Println(err)
 	}
-	//fmt.Println(resp)
 
 	return resp, err
 }
