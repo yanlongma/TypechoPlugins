@@ -1,0 +1,626 @@
+
+<!DOCTYPE HTML>
+<html class="no-js">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>PHP 基础篇 - PHP 的 BC MATH 系列数学函数 - 马燕龙个人博客</title>
+
+    <!-- 使用url函数转换相关路径 -->
+    <link rel="stylesheet" href="http://cdn.staticfile.org/normalize/2.1.3/normalize.min.css">
+    <link rel="stylesheet" href="http://www.mayanlong.com/usr/themes/default/grid.css">
+    <link rel="stylesheet" href="http://www.mayanlong.com/usr/themes/default/style.css">
+    <link rel="shortcut icon" href="http://www.mayanlong.com/usr/themes/default/img/favicon.ico" />
+
+
+    <!--[if lt IE 9]>
+    <script src="http://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+    <script src="http://cdn.staticfile.org/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- 百度广告联盟验证  -->
+    <meta name="baidu_union_verify" content="f76570021915ed0aa32f6e17e821efb1">
+
+    <!-- 百度验证标签  -->
+    <meta name="baidu-site-verification" content="9V1uWUFEtF" />
+
+    <!-- 百度统计代码  -->
+    <script>
+//        var _hmt = _hmt || [];
+//        (function() {
+//            var hm = document.createElement("script");
+//            hm.src = "//hm.baidu.com/hm.js?fba821747cde0b9f7971eb7e43828cd7";
+//            var s = document.getElementsByTagName("script")[0];
+//            s.parentNode.insertBefore(hm, s);
+//        })();
+    </script>
+
+    <!-- 通过自有函数输出HTML头部信息 -->
+    <meta name="description" content="一、常见问题用 PHP 做计算时经常会遇到精度带来的问题，下面来看两个常见的例子：1. 运算比较下面表达式输出的结果不是相等：&amp;lt;?php echo 2.01 - 0.01 == 2 ? '..." />
+    <meta name="keywords" content="bcmath" />
+    <meta name="generator" content="Typecho 1.1/17.10.30" />
+    <meta name="template" content="default" />
+    <link rel="pingback" href="http://mayanlong.com/action/xmlrpc" />
+    <link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://mayanlong.com/action/xmlrpc?rsd" />
+    <link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://mayanlong.com/action/xmlrpc?wlw" />
+    <link rel="alternate" type="application/rss+xml" title="PHP 基础篇 - PHP 的 BC MATH 系列数学函数 &raquo; 马燕龙个人博客 &raquo; RSS 2.0" href="http://mayanlong.com/feed/archives/2017/bcmath.html" />
+    <link rel="alternate" type="application/rdf+xml" title="PHP 基础篇 - PHP 的 BC MATH 系列数学函数 &raquo; 马燕龙个人博客 &raquo; RSS 1.0" href="http://mayanlong.com/feed/rss/archives/2017/bcmath.html" />
+    <link rel="alternate" type="application/atom+xml" title="PHP 基础篇 - PHP 的 BC MATH 系列数学函数 &raquo; 马燕龙个人博客 &raquo; ATOM 1.0" href="http://mayanlong.com/feed/atom/archives/2017/bcmath.html" />
+    <script type="text/javascript">
+        (function () {
+            window.TypechoComment = {
+                dom : function (id) {
+                    return document.getElementById(id);
+                },
+
+                create : function (tag, attr) {
+                    var el = document.createElement(tag);
+
+                    for (var key in attr) {
+                        el.setAttribute(key, attr[key]);
+                    }
+
+                    return el;
+                },
+
+                reply : function (cid, coid) {
+                    var comment = this.dom(cid), parent = comment.parentNode,
+                        response = this.dom('respond-post-553'), input = this.dom('comment-parent'),
+                        form = 'form' == response.tagName ? response : response.getElementsByTagName('form')[0],
+                        textarea = response.getElementsByTagName('textarea')[0];
+
+                    if (null == input) {
+                        input = this.create('input', {
+                            'type' : 'hidden',
+                            'name' : 'parent',
+                            'id'   : 'comment-parent'
+                        });
+
+                        form.appendChild(input);
+                    }
+
+                    input.setAttribute('value', coid);
+
+                    if (null == this.dom('comment-form-place-holder')) {
+                        var holder = this.create('div', {
+                            'id' : 'comment-form-place-holder'
+                        });
+
+                        response.parentNode.insertBefore(holder, response);
+                    }
+
+                    comment.appendChild(response);
+                    this.dom('cancel-comment-reply-link').style.display = '';
+
+                    if (null != textarea && 'text' == textarea.name) {
+                        textarea.focus();
+                    }
+
+                    return false;
+                },
+
+                cancelReply : function () {
+                    var response = this.dom('respond-post-553'),
+                        holder = this.dom('comment-form-place-holder'), input = this.dom('comment-parent');
+
+                    if (null != input) {
+                        input.parentNode.removeChild(input);
+                    }
+
+                    if (null == holder) {
+                        return true;
+                    }
+
+                    this.dom('cancel-comment-reply-link').style.display = 'none';
+                    holder.parentNode.insertBefore(response, holder);
+                    return false;
+                }
+            };
+        })();
+    </script>
+    <script type="text/javascript">
+        (function () {
+            var event = document.addEventListener ? {
+                add: 'addEventListener',
+                triggers: ['scroll', 'mousemove', 'keyup', 'touchstart'],
+                load: 'DOMContentLoaded'
+            } : {
+                add: 'attachEvent',
+                triggers: ['onfocus', 'onmousemove', 'onkeyup', 'ontouchstart'],
+                load: 'onload'
+            }, added = false;
+
+            document[event.add](event.load, function () {
+                var r = document.getElementById('respond-post-553'),
+                    input = document.createElement('input');
+                input.type = 'hidden';
+                input.name = '_';
+                input.value = (function () {
+                    var _aoG0OWj = /* 'RB5'//'RB5' */''+'46c'//'OHV'
+                        +'IN'//'IN'
+                        +'c45'//'eH'
+                        +''///*'c'*/'c'
+                        +'57c'//'aNI'
+                        +'26'//'7I'
+                        +//'i'
+                        '66'+//'t6'
+                        'c'+//'uYu'
+                        'b9'+'5a0'//'QE'
+                        +//'vg'
+                        'd'+//'zUo'
+                        '607'+'6'//'4'
+                        +'c5'//'CI'
+                        +/* 'Qb'//'Qb' */''+'4a9'//'a'
+                        +//'RX'
+                        'a'+'c'//'qa'
+                        +/* 'RXR'//'RXR' */''+''///*'8'*/'8'
+                        +//'G'
+                        'G'+''///*'M'*/'M'
+                        +//'wQ'
+                        'wQ'+'c'//'s'
+                        , _yO7Ql8 = [[3,5],[31,32],[31,33]];
+
+                    for (var i = 0; i < _yO7Ql8.length; i ++) {
+                        _aoG0OWj = _aoG0OWj.substring(0, _yO7Ql8[i][0]) + _aoG0OWj.substring(_yO7Ql8[i][1]);
+                    }
+
+                    return _aoG0OWj;
+                })();
+
+                if (null != r) {
+                    var forms = r.getElementsByTagName('form');
+                    if (forms.length > 0) {
+                        function append() {
+                            if (!added) {
+                                forms[0].appendChild(input);
+                                added = true;
+                            }
+                        }
+
+                        for (var i = 0; i < event.triggers.length; i ++) {
+                            var trigger = event.triggers[i];
+                            document[event.add](trigger, append);
+                            window[event.add](trigger, append);
+                        }
+                    }
+                }
+            });
+        })();
+    </script><link rel="stylesheet" type="text/css" href="http://www.mayanlong.com/usr/plugins/HighlightJs/res/styles/xcode.css" /></head>
+<body>
+
+<script>
+//    (function(){
+//        var bp = document.createElement('script');
+//        var curProtocol = window.location.protocol.split(':')[0];
+//        if (curProtocol === 'https') {
+//            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+//        }
+//        else {
+//            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+//        }
+//        var s = document.getElementsByTagName("script")[0];
+//        s.parentNode.insertBefore(bp, s);
+//    })();
+</script>
+
+<!--[if lt IE 8]>
+<div class="browsehappy" role="dialog">当前网页 <strong>不支持</strong> 你正在使用的浏览器. 为了正常的访问, 请 <a href="http://browsehappy.com/">升级你的浏览器</a>.</div>
+<![endif]-->
+
+<header id="header" class="clearfix">
+    <div class="container">
+        <div class="row">
+            <div class="site-name col-mb-12 col-9">
+                <a id="logo" href="http://www.mayanlong.com/" title="马燕龙个人博客">
+                    天秤vs永恒                </a>
+                <p class="description"></p>
+            </div>
+            <div class="site-search col-3 kit-hidden-tb">
+                <form id="search" method="post" action="./" role="search">
+                    <label for="s" class="sr-only">搜索关键字</label>
+                    <input type="text" name="s" class="text" placeholder="输入关键字搜索" />
+                    <button type="submit" class="submit">搜索</button>
+                </form>
+            </div>
+            <div class="col-mb-12">
+                <nav id="nav-menu" class="clearfix" role="navigation">
+                    <a href="http://www.mayanlong.com/">首页</a>
+                    <a href="http://mayanlong.com/docker.html" title="Docker 笔记">Docker 笔记</a>
+                    <a href="http://mayanlong.com/laravel.html" title="Laravel 教程">Laravel 教程</a>
+                    <a href="http://mayanlong.com/message.html" title="留言板">留言板</a>
+                </nav>
+            </div>
+        </div><!-- end .row -->
+    </div>
+</header><!-- end #header -->
+<div id="body">
+    <div class="container">
+        <div class="row">
+
+
+
+
+            <div class="col-mb-12 col-8" id="main" role="main">
+
+                <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+                    <h1 class="post-title" itemprop="name headline"><a itemtype="url" href="http://mayanlong.com/archives/2017/bcmath.html">PHP 基础篇 - PHP 的 BC MATH 系列数学函数</a></h1>
+                    <ul class="post-meta">
+                        <li itemprop="author" itemscope itemtype="http://schema.org/Person">
+                            作者:                 <a itemprop="name" href="http://mayanlong.com/author/1/" rel="author" title="马燕龙">
+                            马燕龙                </a>
+                        </li>
+                        <li>时间: <time datetime="2017-12-14T16:52:00+08:00" itemprop="datePublished">2017-12-14</time></li>
+                        <li>分类: <a href="http://mayanlong.com/category/php/">PHP</a></li>
+                    </ul>
+
+                    <div id="js-article-content" class="post-content" itemprop="articleBody">
+                        <h1>一、常见问题</h1>
+                        <h2>一、常见问题</h2><p>用 PHP 做计算时经常会遇到精度带来的问题，下面来看两个常见的例子：</p><h4>1. 运算比较</h4><p>下面表达式输出的结果不是<code>相等</code>：</p><pre><code>&lt;?php
+
+echo 2.01 - 0.01 == 2 ? '相等' : '不相等';  // 不相等</code></pre><h4>2. 类型转换</h4><p>下面表达式输出的结果不是<code>201</code>（如果想输出你想要的结果，需要先转 string 再转 int）：</p><pre><code>&lt;?php
+
+$num = intval(2.01 * 100);
+var_dump($num);    // int(200)</code></pre><p>你也许会觉得很奇怪，然而这并不是 PHP 的 bug，如果想深入了解可以参考鸟哥的两篇文章：</p><ol><li><a href="http://www.laruence.com/2011/12/19/2399.html">关于PHP浮点数你应该知道的(All ‘bogus’ about the float in PHP)</a></li><li><a href="http://www.laruence.com/2013/03/26/2884.html">PHP浮点数的一个常见问题的解答</a></li></ol><h2>二、BC MATH</h2><p>用 PHP 提供的 BC MATH 系列数学函数可以解决上面的问题。对于任意精度的数学计算， BC MATH 提供了支持用字符串表示的任意大小和精度的数字的二进制计算，最多为2147483647-1（或0x7FFFFFFF-1）。</p><p>下面用 BC MATH 提供的函数解决上面的问题。</p><h4>1. 运算比较</h4><p>bccomp — 比较两个任意精度的数字：</p><pre><code>&lt;?php
+
+$num = bccomp(2.01 - 0.01, 2, 2);
+var_dump($num); // int(0)</code></pre><p>注：如果两个数相等返回 0, 左边的数比较右边的数大返回 1, 否则返回-1。</p><h4>2. 类型转换</h4><p>bcmul — 2个任意精度数字乘法计算：</p><pre><code>&lt;?php
+
+$num = bcmul(2.01, 100, 0);
+var_dump($num);    // string(3) &quot;201&quot;
+var_dump(intval($num));    // int(201)</code></pre><p>注：返回结果为字符串类型</p><p>使用 BC MATH 系列数学函数可以让我们减少失误，避免不必要的错误，如需查看详细参数和其它函数的使用，请查阅 <a href="http://php.net/manual/zh/book.bc.php">PHP 官方文档：http://php.net/manual/zh/book.bc.php</a></p><hr><blockquote><p>本文首发于<a href="http://www.mayanlong.com/archives/2017/bcmath.html">马燕龙个人博客</a>，欢迎分享，转载请标明出处。<br>马燕龙个人博客：<a href="http://www.mayanlong.com">http://www.mayanlong.com</a><br>马燕龙个人微博：<a href="http://weibo.com/imayanlong">http://weibo.com/imayanlong</a><br>马燕龙Github主页：<a href="https://github.com/yanlongma">https://github.com/yanlongma</a></p></blockquote>        </div>
+
+                    <p itemprop="keywords" class="tags">标签: <a href="http://mayanlong.com/tag/bcmath/">bcmath</a></p>
+
+                    <!--
+                    <blockquote class="kit-hidden-tb">
+                        <h4>如果本站文章对您有所帮助，请点击网站中的广告进行支持，您的支持将鼓励我继续创作！(*^__^*) </h4>
+                    </blockquote>
+                    -->
+                    <blockquote>
+                        <h4>
+                            不错，不错，对我有帮助！
+                            <a href="http://www.mayanlong.com/donate.html">
+                                我要打赏他！GO ->
+                            </a>
+                        </h4>
+                    </blockquote>
+
+                </article>
+
+
+                <div class="kit-hidden-tb">
+
+                    <script type="text/javascript">
+                        /* 百度广告 内容区域一 （660*105）*/
+                        var cpro_id = "u2738354";
+                    </script>
+                    <script type="text/javascript" src="http://cpro.baidustatic.com/cpro/ui/c.js"></script>
+
+                </div>
+
+
+                <div id="comments">
+
+                    <div id="respond-post-553" class="respond">
+                        <div class="cancel-comment-reply">
+                            <a id="cancel-comment-reply-link" href="http://mayanlong.com/archives/2017/bcmath.html#respond-post-553" rel="nofollow" style="display:none" onclick="return TypechoComment.cancelReply();">取消回复</a>        </div>
+
+                        <h3 id="response">添加新评论</h3>
+                        <form method="post" action="http://mayanlong.com/archives/2017/bcmath.html/comment" id="comment-form" role="form">
+                            <p>
+                                <label for="author" class="required">称呼</label>
+                                <input type="text" name="author" id="author" class="text" value="" required />
+                            </p>
+                            <p>
+                                <label for="mail" class="required">Email</label>
+                                <input type="email" name="mail" id="mail" class="text" value="" required />
+                            </p>
+                            <p>
+                                <label for="url">网站</label>
+                                <input type="url" name="url" id="url" class="text" placeholder="http://" value="" />
+                            </p>
+                            <p>
+                                <label for="textarea" class="required">内容</label>
+                                <textarea rows="8" cols="50" name="text" id="textarea" class="textarea" required ></textarea>
+                            </p>
+                            <p>
+                                <button type="submit" class="submit">提交评论</button>
+                            </p>
+                        </form>
+                    </div>
+                </div>
+
+                <ul class="post-near">
+                    <li>上一篇: <a href="http://mayanlong.com/archives/2017/528.html" title="Docker 学习笔记 - 使用 LaraDock 搭建 PHP 开发环境">Docker 学习笔记 - 使用 LaraDock 搭建 PHP 开发环境</a></li>
+                    <li>下一篇: <a href="http://mayanlong.com/archives/2017/error_reporting.html" title="PHP 基础篇 - PHP 错误级别详解">PHP 基础篇 - PHP 错误级别详解</a></li>
+                </ul>
+
+            </div><!-- end #main-->
+
+            <div class="col-mb-12 col-offset-1 col-3 kit-hidden-tb" id="secondary" role="complementary">
+
+
+                <section class="widget">
+                    <script type="text/javascript">
+                        /* 百度广告 侧边栏一 （235*235）*/
+                        var cpro_id = "u2738274";
+                    </script>
+                    <script type="text/javascript" src="http://cpro.baidustatic.com/cpro/ui/c.js"></script>
+                </section>
+
+                <section class="widget">
+                    <h3 class="widget-title">最新文章</h3>
+                    <ul class="widget-list">
+                        <li><a href="http://mayanlong.com/archives/2017/error_reporting.html">PHP 基础篇 - PHP 错误级别详解</a></li><li><a href="http://mayanlong.com/archives/2017/bcmath.html">PHP 基础篇 - PHP 的 BC MATH 系列数学函数</a></li><li><a href="http://mayanlong.com/archives/2017/528.html">Docker 学习笔记 - 使用 LaraDock 搭建 PHP 开发环境</a></li><li><a href="http://mayanlong.com/archives/2017/523.html">Docker 学习笔记 - 使用 Dockerfile 创建镜像</a></li><li><a href="http://mayanlong.com/archives/2017/497.html">Docker 学习笔记 - 端口映射与容器互联</a></li><li><a href="http://mayanlong.com/archives/2017/492.html">Docker 学习笔记 - Docker 数据管理</a></li><li><a href="http://mayanlong.com/archives/2017/487.html">Docker 学习笔记 - Docker 仓库</a></li><li><a href="http://mayanlong.com/archives/2017/485.html">Docker 学习笔记 - Docker 容器命令汇总</a></li><li><a href="http://mayanlong.com/archives/2017/478.html">Docker 学习笔记 - Docker 镜像命令汇总</a></li><li><a href="http://mayanlong.com/archives/2017/456.html">Docker 学习笔记 - Docker 核心概念与安装</a></li>        </ul>
+                </section>
+
+                <section class="widget">
+                    <h3 class="widget-title">最近回复</h3>
+                    <ul class="widget-list">
+                        <li><a href="http://mayanlong.com/archives/2016/88.html#comment-1115">马燕龙</a>: 留下你的 star 再走，^_^</li>
+                        <li><a href="http://mayanlong.com/archives/2016/88.html#comment-1114">iOS</a>: 写的好</li>
+                        <li><a href="http://mayanlong.com/archives/2017/528.html#comment-1113">马燕龙</a>: 如果你接触过复杂的、大型的 PHP 项目也许会改变这个观点！</li>
+                        <li><a href="http://mayanlong.com/archives/2017/528.html#comment-1112">明远网络工作室</a>: docker 用来整PHP 太浪费了</li>
+                        <li><a href="http://mayanlong.com/message.html#comment-1110">3maio</a>: 我的小站https://www.3maio.com</li>
+                    </ul>
+                </section>
+
+                <section class="widget">
+                    <h3 class="widget-title">分类目录</h3>
+                    <ul class="widget-list"><li class="category-level-0 category-parent"><a href="http://mayanlong.com/category/default/">随笔</a></li><li class="category-level-0 category-parent"><a href="http://mayanlong.com/category/swift/">Swift</a></li><li class="category-level-0 category-parent"><a href="http://mayanlong.com/category/php/">PHP</a></li><li class="category-level-0 category-parent"><a href="http://mayanlong.com/category/linux/">Linux</a></li><li class="category-level-0 category-parent"><a href="http://mayanlong.com/category/mac/">Mac</a></li><li class="category-level-0 category-parent"><a href="http://mayanlong.com/category/docker/">Docker</a></li><li class="category-level-0 category-parent"><a href="http://mayanlong.com/category/laravel/">Laravel</a></li></ul>	</section>
+
+                <section class="widget">
+                    <h3 class="widget-title">标签</h3>
+                    <div class="widget-list"><a href='http://mayanlong.com/tag/laravel/' style='display: inline-block; margin: 0 5px 5px 0;'>laravel</a><a href='http://mayanlong.com/tag/docker/' style='display: inline-block; margin: 0 5px 5px 0;'>docker</a><a href='http://mayanlong.com/tag/swift/' style='display: inline-block; margin: 0 5px 5px 0;'>swift</a><a href='http://mayanlong.com/tag/ios/' style='display: inline-block; margin: 0 5px 5px 0;'>iOS</a><a href='http://mayanlong.com/tag/composer/' style='display: inline-block; margin: 0 5px 5px 0;'>composer</a><a href='http://mayanlong.com/tag/mac/' style='display: inline-block; margin: 0 5px 5px 0;'>mac</a><a href='http://mayanlong.com/tag/redis/' style='display: inline-block; margin: 0 5px 5px 0;'>redis</a><a href='http://mayanlong.com/tag/git/' style='display: inline-block; margin: 0 5px 5px 0;'>git</a><a href='http://mayanlong.com/tag/typecho/' style='display: inline-block; margin: 0 5px 5px 0;'>typecho</a><a href='http://mayanlong.com/tag/phpize/' style='display: inline-block; margin: 0 5px 5px 0;'>phpize</a><a href='http://mayanlong.com/tag/homebrew/' style='display: inline-block; margin: 0 5px 5px 0;'>homebrew</a><a href='http://mayanlong.com/tag/cocoapods/' style='display: inline-block; margin: 0 5px 5px 0;'>cocoapods</a><a href='http://mayanlong.com/tag/javascriptcore/' style='display: inline-block; margin: 0 5px 5px 0;'>JavaScriptCore</a><a href='http://mayanlong.com/tag/%E7%BD%91%E7%BB%9C%E6%A3%80%E6%B5%8B/' style='display: inline-block; margin: 0 5px 5px 0;'>网络检测</a><a href='http://mayanlong.com/tag/gcd/' style='display: inline-block; margin: 0 5px 5px 0;'>gcd</a><a href='http://mayanlong.com/tag/%E8%AE%A1%E6%97%B6%E5%99%A8/' style='display: inline-block; margin: 0 5px 5px 0;'>计时器</a><a href='http://mayanlong.com/tag/bcmath/' style='display: inline-block; margin: 0 5px 5px 0;'>bcmath</a><a href='http://mayanlong.com/tag/pcntl/' style='display: inline-block; margin: 0 5px 5px 0;'>pcntl</a><a href='http://mayanlong.com/tag/macos-sierra/' style='display: inline-block; margin: 0 5px 5px 0;'>macos sierra</a><a href='http://mayanlong.com/tag/lamp/' style='display: inline-block; margin: 0 5px 5px 0;'>lamp</a><a href='http://mayanlong.com/tag/autoconf/' style='display: inline-block; margin: 0 5px 5px 0;'>autoconf</a><a href='http://mayanlong.com/tag/phpredis/' style='display: inline-block; margin: 0 5px 5px 0;'>phpredis</a><a href='http://mayanlong.com/tag/rootless/' style='display: inline-block; margin: 0 5px 5px 0;'>rootless</a><a href='http://mayanlong.com/tag/markdown/' style='display: inline-block; margin: 0 5px 5px 0;'>markdown</a><a href='http://mayanlong.com/tag/php/' style='display: inline-block; margin: 0 5px 5px 0;'>php</a><a href='http://mayanlong.com/tag/mysql/' style='display: inline-block; margin: 0 5px 5px 0;'>mysql</a><a href='http://mayanlong.com/tag/js/' style='display: inline-block; margin: 0 5px 5px 0;'>js</a><a href='http://mayanlong.com/tag/phpstorm/' style='display: inline-block; margin: 0 5px 5px 0;'>phpstorm</a><a href='http://mayanlong.com/tag/xdebug/' style='display: inline-block; margin: 0 5px 5px 0;'>xdebug</a></div>
+                </section>
+                <section class="widget">
+                    <h3 class="widget-title">归档</h3>
+                    <ul class="widget-list">
+                        <li><a href="http://mayanlong.com/2017/12/">2017-12</a></li><li><a href="http://mayanlong.com/2017/11/">2017-11</a></li><li><a href="http://mayanlong.com/2017/10/">2017-10</a></li><li><a href="http://mayanlong.com/2017/04/">2017-04</a></li><li><a href="http://mayanlong.com/2017/02/">2017-02</a></li><li><a href="http://mayanlong.com/2017/01/">2017-01</a></li><li><a href="http://mayanlong.com/2016/11/">2016-11</a></li><li><a href="http://mayanlong.com/2016/09/">2016-09</a></li><li><a href="http://mayanlong.com/2016/08/">2016-08</a></li><li><a href="http://mayanlong.com/2016/07/">2016-07</a></li><li><a href="http://mayanlong.com/2016/06/">2016-06</a></li><li><a href="http://mayanlong.com/2016/04/">2016-04</a></li>        </ul>
+                </section>
+
+                <section class="widget">
+                    <h3 class="widget-title">其它</h3>
+                    <ul class="widget-list">
+                        <li class="last"><a href="http://mayanlong.com/admin/login.php">登录</a></li>
+                        <li><a href="http://mayanlong.com/feed/">文章 RSS</a></li>
+                        <li><a href="http://mayanlong.com/feed/comments/">评论 RSS</a></li>
+                        <li><a href="http://www.typecho.org">Typecho</a></li>
+                    </ul>
+                </section>
+
+                <section class="widget">
+                    <script type="text/javascript">
+                        /* 百度广告 侧边栏二 （235*235）*/
+                        var cpro_id = "u2738289";
+                    </script>
+                    <script type="text/javascript" src="http://cpro.baidustatic.com/cpro/ui/c.js"></script>
+                </section>
+
+            </div><!-- end #sidebar -->
+
+        </div><!-- end .row -->
+    </div>
+</div><!-- end #body -->
+
+<footer id="footer" role="contentinfo">
+    <div>
+        &copy; 2017        <a href="http://www.mayanlong.com/" title="马燕龙个人博客">马燕龙个人博客</a>.
+        苏ICP备15012818号-1.
+    </div>
+    <div>由 <a href="http://www.typecho.org">Typecho</a> 强力驱动.</div>
+</footer><!-- end #footer -->
+
+<script type="text/javascript" src="http://www.mayanlong.com/usr/plugins/HighlightJs/res/highlight.pack.js"></script><script type="text/javascript">window.onload = function () {
+    var codes = document.getElementsByTagName("pre"),
+        hlNames = {
+            actionscript : /^as[1-3]$/i,
+            cmake : /^(make|makefile)$/i,
+            cs : /^csharp$/i,
+            css : /^css[1-3]$/i,
+            delphi : /^pascal$/i,
+            javascript : /^js$/i,
+            markdown : /^md$/i,
+            objectivec : /^objective\-c$/i,
+            php  : /^php[1-6]$/i,
+            sql : /^mysql$/i,
+            xml : /^(html|html5|xhtml)$/i
+        }, hlLangs = hljs.LANGUAGES;
+
+    for (var i = 0; i < codes.length; i ++) {
+        var children = codes[i].getElementsByTagName("code"), highlighted = false;
+
+        if (children.length > 0) {
+            var code = children[0], className = code.className;
+
+            if (!!className) {
+                if (0 == className.indexOf("lang-")) {
+                    var lang = className.substring(5).toLowerCase(), finalLang;
+
+                    if (hlLangs[lang]) {
+                        finalLang = lang;
+                    } else {
+                        for (var l in hlNames) {
+                            if (lang.match(hlNames[l])) {
+                                finalLang = l;
+                            }
+                        }
+                    }
+
+                    if (!!finalLang) {
+                        var result = hljs.highlight(finalLang, code.textContent, true);
+                        code.innerHTML = result.value;
+                        highlighted = true;
+                    }
+                }
+            }
+
+            if (!highlighted) {
+                var html = code.innerHTML;
+                code.innerHTML = html.replace(/<\/?[a-z]+[^>]*>/ig, "");
+                hljs.highlightBlock(code, "", false);
+            }
+        }
+    }
+}</script><script>
+
+    (function() {
+        var aList = document.getElementById("js-article-content").getElementsByTagName("a");
+        for(var ind=0; ind<aList.length; ind++) {
+            aList[ind].target = "_blank";
+        }
+    })();
+
+    window.onload = function () {
+
+        (function () {
+            /*
+            //var content = document.getElementById('js-article-content');
+            //var childNodes = content.childNodes;
+            // console.log(childNodes);
+            // console.log(childNodes[0].nodeName == '#text');
+            // console.log(childNodes[0].nodeName == 'H1');
+            // console.log(childNodes[0].localName == 'h1');
+
+
+            var idInd = 0;
+            var nav = '';
+            for(var i=0; i< childNodes.length; i++) {
+                var node = childNodes[i];
+                if (node.localName == 'h2' || node.localName == 'h4') {
+                    var idVal = node.localName + '-' + idInd;
+                    node.setAttribute('id', idVal);
+                    nav += "<a href='#" + idVal + "'>" + node.innerHTML + "</a> \n";
+                    idInd++;
+                }
+            }
+
+            var newElementHtmlContent = document.createTextNode(nav);
+            document.body.appendChild(nav);
+
+
+            // document.getElementsByTagName('body')[0].append(nav);
+            //document.getElementsByTagName('body')[0].appendChild(nav);
+            // var newElementHtmlContent = document.createTextNode(nav);
+            // var first=document.body.lastChild;// 得到页面的第一个元素
+            //var wraphtml=document.body.insertBefore(newElementHtmlContent,first);
+            */
+
+            var content = document.getElementById('js-article-content');
+            var childNodes = content.childNodes;
+
+            var divElement = document.createElement("div");
+            divElement.setAttribute('id', 'my-menu-nav');
+            var ulElement = document.createElement("ul");
+
+            var idInd = 0;
+            for(var i=0; i< childNodes.length; i++) {
+
+                var node = childNodes[i];
+                if (node.localName == 'h2' || node.localName == 'h4') {
+
+                    var idVal = node.localName + '-' + idInd;
+                    node.setAttribute('id', idVal);
+
+                    var liElement = document.createElement("li");
+                    liElement.className = 'my-menu-nav-' + node.localName;
+
+                    var aElement = document.createElement("a");
+                    aElement.setAttribute('href', '#' + idVal);
+                    aElement.innerHTML = node.innerHTML;
+                    if (i == 5) {
+                        liElement.style.borderLeft = "3px solid #000";
+                        aElement.className = 'active';
+                    }
+
+                    liElement.appendChild(aElement);
+                    ulElement.appendChild(liElement);
+
+                    idInd++;
+                }
+            }
+
+            divElement.appendChild(ulElement);
+            document.body.appendChild(divElement);
+
+            var aList = document.getElementById('my-menu-nav').getElementsByTagName('a');
+            for(var i=0; i< aList.length; i++) {
+                aList[i].onclick = function () {
+                    for(var i=0; i< aList.length; i++) {
+                        aList[i].parentNode.style.borderLeft = '';
+                        aList[i].className = '';
+                    }
+                    this.parentNode.style.borderLeft = '3px solid #000';
+                    this.className = 'active';
+                }
+            }
+
+        })();
+    }
+
+
+</script>
+<style>
+
+    #my-menu-nav {
+        position: fixed;
+        top: 300px;
+        left: 100px;
+        border-left: 3px solid #666;
+        margin: 30px;  /* 去掉 */
+    }
+
+    #my-menu-nav ul {
+        padding: 2px 0;
+    }
+
+    #my-menu-nav ul li {
+        list-style: none;
+        margin: 10px 0px;
+        padding-left: 10px;
+    }
+
+    #my-menu-nav a {
+        text-decoration: none;
+    }
+
+    #my-menu-nav .my-menu-nav-h1 a,#my-menu-nav .my-menu-nav-h2 a{
+        font-size: 14px;
+        color: #000;
+    }
+
+    #my-menu-nav .my-menu-nav-h3 a,#my-menu-nav .my-menu-nav-h4 a,#my-menu-nav .my-menu-nav-h5 a,#my-menu-nav .my-menu-nav-h6 a{
+        font-size: 14px;
+        color: #666;
+    }
+
+    #my-menu-nav .my-menu-nav-h2 a {
+        padding-left: 5px;
+    }
+
+    #my-menu-nav .my-menu-nav-h3 a {
+        padding-left: 10px;
+    }
+
+    #my-menu-nav .my-menu-nav-h4 a {
+        padding-left: 15px;
+    }
+
+    #my-menu-nav .my-menu-nav-h5 a {
+        padding-left: 20px;
+    }
+
+    #my-menu-nav .my-menu-nav-h6 a {
+        padding-left: 25px;
+    }
+
+    #my-menu-nav ul li .active {
+        color: #000;
+    }
+
+</style>
+</body>
+</html>
